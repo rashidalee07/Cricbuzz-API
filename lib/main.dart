@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
-
-import 'package:api_integeration/Constants.dart';
+import 'package:api_integeration/constants.dart';
+import 'package:api_integeration/cricbuzz_matches.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +19,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const CricbuzzMatches(),
     );
   }
 }
@@ -112,10 +113,10 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: ((context, index) {
                     return ListTile(
                       tileColor: Colors.blueGrey[900],
-                      leading: CircleAvatar(backgroundImage: NetworkImage(playerFaceId[index],
-                      headers: requestHeaders,
-                      scale: 1
-                      ),),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(playerFaceId[index],
+                            headers: requestHeaders, scale: 1),
+                      ),
                       title: Text(
                         rankingList[index]['name'].toString(),
                         style: const TextStyle(color: Colors.white),
@@ -136,7 +137,8 @@ class _HomePageState extends State<HomePage> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: CachedNetworkImage(
-        imageUrl: 'https://i.pinimg.com/originals/48/b6/b3/48b6b3c9fb83a6ff8bd1204470901789.jpg',
+        imageUrl:
+            'https://i.pinimg.com/originals/48/b6/b3/48b6b3c9fb83a6ff8bd1204470901789.jpg',
         httpHeaders: requestHeaders,
         width: 50,
         height: 50,
